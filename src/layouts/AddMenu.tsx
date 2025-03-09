@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import { LuShoppingBasket } from "react-icons/lu";
 import { LuMessageCircle } from "react-icons/lu";
@@ -6,6 +7,7 @@ import { IoHeartCircleOutline } from "react-icons/io5";
 import { CiLink } from "react-icons/ci";
 import { MdOutlineWidgets } from "react-icons/md";
 import AddManually from "../components/addMenu/AddManually";
+import { useShowMenu } from "../hooks/useShowMenu";
 
 
 
@@ -17,10 +19,30 @@ import AddManually from "../components/addMenu/AddManually";
 function AddMenu() {
 
   const listyles = 'text-gray-900 p-1 rounded-lg flex items-center gap-2 hover:bg-gray-200 cursor-pointer w-full';
+  const addMenuRef = useRef<HTMLDivElement>(null);
+  const { toggleMenu } = useShowMenu();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+     if(event.button===0){
+      if (
+        addMenuRef.current &&
+        !addMenuRef.current.contains(event.target as Node)
+      ) {
+        toggleMenu(); // Close menu if clicked outside
+      }
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggleMenu]);
 
 
   return (
-    <div className='absolute left-[25%] top-1/8 bg-white w-1/2 h-2/3 flex '>
+    <div className='absolute left-[25%] top-1/8 bg-white w-1/2 h-2/3 flex' ref={addMenuRef} >
       <div className='h-full py-4 px-1 '>
         <h3 className='text-lg pb-2  text-gray-900 '>Add Shortcut</h3>
         <ul className='flex flex-col items-start gap-3 overflow-scroll h-[90%] no-scrollbar'>

@@ -35,9 +35,10 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { useEffect, useState } from "react";
-import downloadFavicon from "../utils/downloadFavicon";
+import downloadFavicon from "../utils/fetchFavicon";
 
-function SiteItem(props: { id: string; name: string; url: string; x: number; y: number; area: string }) {
+function SiteItem(props: { id: string; name: string; url: string; x: number; y: number; area: string, bgColor: string }) {
+  const bgColor = props.bgColor;
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id: props.id });
 
   const [icon, setIcon] = useState<string>("");
@@ -54,6 +55,7 @@ function SiteItem(props: { id: string; name: string; url: string; x: number; y: 
     transform: CSS.Translate.toString(transform),
     left: `${props.x}px`,
     top: `${props.y}px`,
+    backgroundColor: `${bgColor}`,
   };
 
   return (
