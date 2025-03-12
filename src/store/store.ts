@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import siteReducer from '../features/siteSlice'
+import boundsReducer from '../features/boundsSlice'
 
 export const store = configureStore({
   reducer: {    
     sites: siteReducer,
+    bounds: boundsReducer,
   },
 })
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 const widgetOptions = [
   { name: "Search", imgSrc: "/icons/search.png" },
   { name: "Notes", imgSrc: "/icons/notes.png" },
@@ -9,12 +7,8 @@ const widgetOptions = [
   { name: "To Do", imgSrc: "/icons/todo.png" },
 ];
 
-interface WidgetOptionsProps {
-  isVisible: boolean;
-}
 
-const WidgetOptions: React.FC<WidgetOptionsProps> = ({ isVisible }) => {
-  if (!isVisible) return null;
+const WidgetOptions = () => {
 
   return (
     <div className="p-4">

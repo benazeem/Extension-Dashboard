@@ -1,6 +1,6 @@
 import { createContext } from "react"
 
-interface MenuContextType {
+export interface MenuContextType {
     showMenu: boolean;
     toggleMenu: () => void;
   }

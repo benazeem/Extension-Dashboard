@@ -1,23 +1,39 @@
 import {useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { updateBounds } from "../features/boundsSlice";
 import Droppable from "../components/Droppable";
 import SiteItem from "../components/SiteItem";
+import { SiteItem as SiteItemtype } from "../features/siteSlice";
 
 
-export default function MainDropArea({ items, updateBounds }) {
+export default function MainDropArea({ items}: {items: SiteItemtype[]}) {
+  const dispatch = useDispatch();
   const dropAreaRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (dropAreaRef.current) {
-      updateBounds("main", {
-        width: dropAreaRef.current.clientWidth,
-        height: dropAreaRef.current.clientHeight,
-      });
-    }
-  }, [updateBounds]);
+    const updateSize = () => {
+      if (dropAreaRef.current) {
+        dispatch(
+          updateBounds({
+            area: "main",
+            size: {
+              width: dropAreaRef.current.clientWidth,
+              height: dropAreaRef.current.clientHeight,
+            },
+          })
+        );
+      }
+    };
+
+    updateSize(); // Initial update
+
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, [dispatch]);
 
   return (
     <div className="flex h-[72vh] w-[95vw]">
-      <Droppable id="main" setDropRef={(el) => (dropAreaRef.current = el)}>
+      <Droppable id="main" setDropRef={(el:HTMLDivElement) => (dropAreaRef.current = el)}>
         {items
           .filter((item) => item.area === "main")
           .map((item) => (

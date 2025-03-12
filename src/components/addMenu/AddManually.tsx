@@ -15,6 +15,8 @@ import { useShowMenu } from "../../hooks/useShowMenu";
 import getWebsiteColor from "../../utils/getWebsiteColor";
 import { convertImageToBase64 } from "../../utils/convertImagetoBase64";
 
+import {MenuContextType} from "../../context/showMenuContext";
+
 function AddManually() {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
@@ -29,7 +31,7 @@ function AddManually() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const urlInputRef = useRef<HTMLInputElement>(null);
 
-  const { toggleMenu } = useShowMenu();
+  const { toggleMenu } = useShowMenu() as MenuContextType;
 
   useEffect(() => {
     const newUrl = url.split("://");
@@ -57,7 +59,7 @@ function AddManually() {
       getIcon();
     } else {
       setFavicon("");
-      setLogo("");
+      
     }
   }, [icon]);
 
@@ -104,7 +106,6 @@ function AddManually() {
       if (!file) return;
   
       const base64Logo = await convertImageToBase64(file);
-      console.log(base64Logo);
       setLogo(base64Logo);
     } catch (error) {
       console.error("Error converting image to Base64:", error);
@@ -135,7 +136,8 @@ function AddManually() {
     
       setUrlError(""); 
       setNameError("");
-
+      console.log( logo);
+      
     dispatch(
       addSite({
         name: name,
@@ -144,7 +146,6 @@ function AddManually() {
         area: "main",
         x: Math.floor(Math.random() * 100),
         y: Math.floor(Math.random() * 100),
-        bgColor: color,
         id: shortcutId,
       })
     );

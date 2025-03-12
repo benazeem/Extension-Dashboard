@@ -15,7 +15,7 @@ function AddMenu() {
   const addMenuRef = useRef<HTMLDivElement>(null);
   const { toggleMenu } = useShowMenu();
 
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string>("manual");
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -72,7 +72,7 @@ function AddMenu() {
         </div>
         <div>
           {selectedOption === "manual" && <AddManually />}
-          {selectedOption === "widgets" && <WidgetOptions isVisible={true} />}
+          {selectedOption === "widgets" && <WidgetOptions />}
         </div>
       </div>
     </div>
