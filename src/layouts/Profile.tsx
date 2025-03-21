@@ -1,7 +1,11 @@
-import React from 'react'
 import CloseButton from '../components/CloseButton'
 
-function Profile({show,setShow}) {
+interface ProfileProps {
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  show: boolean;
+}
+
+function Profile({show,setShow}:ProfileProps) {
   return (
     <>
     <div className={`w-screen h-screen bg-gray-700 z-2 absolute top-0 left-0 flex justify-center items-center transition-transform duration-2000 ${

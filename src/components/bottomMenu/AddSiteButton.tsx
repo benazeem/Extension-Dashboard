@@ -1,8 +1,10 @@
 import { useShowMenu } from "../../hooks/useShowMenu";
 import add from "../../assets/icons/add.svg";
+import { MenuContextType } from "../../context/showMenuContext";
 
 function AddSiteButton() {
-const {toggleMenu} = useShowMenu();
+
+  const { toggleMenu } = useShowMenu() as MenuContextType;
 
   return (
     <>

@@ -8,12 +8,14 @@ import { MdOutlineWidgets } from "react-icons/md";
 import AddManually from "../components/addMenu/AddManually";
 import WidgetOptions from "../components/addMenu/WidgetOptions.tsx"; // Import WidgetOptions
 import { useShowMenu } from "../hooks/useShowMenu";
+import { MenuContextType } from "../context/showMenuContext.ts";
 
 function AddMenu() {
   const listyles =
     "text-gray-900 p-1 rounded-lg flex items-center gap-2 hover:bg-gray-200 cursor-pointer w-full";
   const addMenuRef = useRef<HTMLDivElement>(null);
-  const { toggleMenu } = useShowMenu();
+
+  const { toggleMenu } = useShowMenu() as MenuContextType;
 
   const [selectedOption, setSelectedOption] = useState<string>("manual");
 

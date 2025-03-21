@@ -24,7 +24,7 @@ export default function SecondaryDropArea({ items }:{items: SiteItemtype[]}) {
 
   return (
     <div className="flex items-center justify-evenly rounded-lg h-[12vh] w-[80vw] bg-amber-200 p-2">
-      <Droppable id="secondary" setDropRef={(el:HTMLDivElement) => (dropAreaRef.current = el)}>
+      <Droppable id="secondary" setDropRef={(el) => { dropAreaRef.current = el; }}>
         {items
           .filter((item) => item.area === "secondary")
           .map((item) => (

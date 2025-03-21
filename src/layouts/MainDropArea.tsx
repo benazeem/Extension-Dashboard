@@ -31,9 +31,9 @@ export default function MainDropArea({ items}: {items: SiteItemtype[]}) {
     return () => window.removeEventListener("resize", updateSize);
   }, [dispatch]);
 
-  return (
-    <div className="flex h-[72vh] w-[95vw]">
-      <Droppable id="main" setDropRef={(el:HTMLDivElement) => (dropAreaRef.current = el)}>
+  return ( 
+    <div className="flex h-[72vh] w-[95vw] ">
+      <Droppable id="main" setDropRef={(el) => { dropAreaRef.current = el; }}>
         {items
           .filter((item) => item.area === "main")
           .map((item) => (

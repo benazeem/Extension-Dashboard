@@ -2,7 +2,18 @@ import { useState } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
-function SiteItem(props: { id: string; name: string; url: string; icon:string ; x: number; y: number; area: string }) {
+
+interface SiteItemProps {
+  id: string;
+  x: number;
+  y: number;
+  icon: string;
+  name: string;
+  url: string;
+  area: string;
+}
+
+function SiteItem(props:SiteItemProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id: props.id });
   const [isDragging, setIsDragging] = useState(false);
 

@@ -2,7 +2,13 @@
 
 import { useDroppable } from "@dnd-kit/core";
 
-export default function Droppable({ id, children, setDropRef }) {
+interface DroppableProps {
+  id: string;
+  children: React.ReactNode;
+  setDropRef?: (el: HTMLDivElement | null) => void;
+}
+
+export default function Droppable({ id, children, setDropRef }:DroppableProps) {
   const { setNodeRef } = useDroppable({ id });
 
   return (
