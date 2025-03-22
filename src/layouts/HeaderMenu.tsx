@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { MdDownload } from "react-icons/md";
 import CloseButton from "../components/CloseButton";
 import Bookmarks from "../components/headerActions/Bookmarks";
 import History from "../components/headerActions/History";
@@ -21,7 +22,8 @@ function HeaderMenu({ setShow }: HeaderMenuProps) {
           <div className="flex gap-4 justify-evenly w-full">
             <Bookmarks />
             <History />
-            <div className="text-white">Contact</div>
+            <div className="text-white"><MdDownload />
+            </div>
           </div>
           <div className="absolute right-1 top-1  ">
             <CloseButton onClick={handleCloseHeaderMenu} />

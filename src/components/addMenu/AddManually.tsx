@@ -69,7 +69,7 @@ function AddManually() {
   };
 
   const handleTextIcon = () => {
-    const firstAlpha = url.split("://")[1]?.charAt(0).toUpperCase() ;
+    const firstAlpha = name.charAt(0).toUpperCase() ;
     if(firstAlpha){
     const canvas = document.createElement("canvas");
     canvas.width = 100;
