@@ -8,7 +8,7 @@ import DragContext from "../components/DragContext";
 import { useShowMenu } from "../hooks/useShowMenu";
 import AddMenu from "../layouts/AddMenu";
 import Button from "../components/Button";
-import LeftSidebar from "../layouts/LeftSidebar";
+import Sidebar from "../layouts/Sidebar";
 import Profile from "../layouts/Profile";
 
 function Home() {
@@ -51,7 +51,7 @@ function Home() {
         initial={{ x: "-100%" }} 
         animate={{ x: 0 }} 
         exit={{ x: "-100%" }} 
-        transition={{ duration: 0.5 }}> <LeftSidebar  setShow={setIsSidebarShow} /> </motion.div>) }</AnimatePresence>
+        transition={{ duration: 0.5 }}> <Sidebar  setShow={setIsSidebarShow} /> </motion.div>) }</AnimatePresence>
     <Profile show={isProfileShow} setShow={setIsProfileShow}/>
       
     <AnimatePresence> {isHeaderShow && 
